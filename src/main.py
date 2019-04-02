@@ -11,7 +11,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 
 # User imports:
-from image import image_matrix
+from image import center_of_gravity, image_matrix
 
 # Main function:
 
