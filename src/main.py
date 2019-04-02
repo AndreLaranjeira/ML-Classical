@@ -1,6 +1,6 @@
-# Program to compare machine learning techniques on the MNIST dataset
+# Program to compare machine learning techniques on the MNIST dataset.
 
-# Imports:
+# Package imports:
 import matplotlib.pyplot as plt
 from mnist import MNIST
 import pandas
@@ -9,6 +9,9 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
+
+# User imports:
+from image import image_matrix
 
 # Main function:
 
