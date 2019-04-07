@@ -1,9 +1,7 @@
 # Program to compare machine learning techniques on the MNIST dataset.
 
 # Package imports:
-import matplotlib.pyplot as plt
 from mnist import MNIST
-import pandas
 from sklearn import model_selection
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.metrics import accuracy_score
@@ -14,9 +12,14 @@ import numpy as np
 import cv2
 
 # User imports:
-from image import center_of_gravity, image_matrix, preprocess_many
+from image import preprocess_many
 
 # Main function:
+
+# ---------------------------------------------------------
+# Código importado de https://github.com/sorki/python-mnist
+# e modificado por André Laranjeira.
+# ---------------------------------------------------------
 
 # First, we load the MNIST dataset with the 'python-mnist' package.
 # This code is PROVIDED AT THE PACKAGE README FILE! We modified it a little, though.
@@ -29,9 +32,17 @@ mndata.train_lbl_fname = 'train-labels.idx1-ubyte'
 train_images, train_labels = mndata.load_training()
 test_images, test_labels = mndata.load_testing()
 
+# -----------------------------------
+# Código feito por Victor Gris Costa.
+# -----------------------------------
+
 # Extracting the input features:
 train_features = preprocess_many(train_images)
 test_features = preprocess_many(test_images)
+
+# ----------------------------------
+# Código feito por André Laranjeira.
+# ----------------------------------
 
 # Running the LDA model analysis:
 print("***********************")
