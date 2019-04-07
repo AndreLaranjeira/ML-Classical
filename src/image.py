@@ -1,5 +1,9 @@
 # Library to hold functions related to image processing.
 
+# Package imports
+import cv2
+import numpy as np
+
 # Control variables:
 IMG_L = 28
 IMG_W = 28
@@ -29,3 +33,39 @@ def image_matrix(image_array, width = IMG_W):
         lines.append(image_array[i:i+width])
 
     return lines
+
+def get_contours(image):
+    img = np.reshape(np.array(image, dtype=np.uint8), (28,28))
+    #cv2.imshow('a', cv2.resize(img ,(400,400),interpolation=cv2.INTER_NEAREST))
+    _, thresh = cv2.threshold(img, 127, 255, 0)
+    _, contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    return contours, img
+
+def get_euler_number(contours):
+    return 2-len(contours)
+
+def get_shape_area(contours):
+    shape_area = cv2.contourArea(contours[0])
+    # for cont in contours[1:]:
+    #     shape_area -= cv2.contourArea(cont)
+    return shape_area
+
+def get_rectangularity(contours):
+    rect = cv2.minAreaRect(contours[0])
+    _, dim, _ = rect
+    rect_area = dim[0]*dim[1]
+    shape_area = get_shape_area(contours)
+    return shape_area/rect_area
+
+def get_circularity(contours):
+    perimeter = cv2.arcLength(contours[0],True)
+    shape_area = get_shape_area(contours)
+    return 4*np.pi*shape_area/(perimeter*perimeter)
+
+def preprocess(image):
+    contours, img = get_contours(image)
+    euler = get_euler_number(contours)
+    rectangularity = get_rectangularity(contours)
+    circularity = get_circularity(contours)
+    #print(euler,rectangularity,circularity)
+    return (euler, rectangularity, circularity), img, contours

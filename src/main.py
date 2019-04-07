@@ -9,9 +9,11 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+import cv2
 
 # User imports:
-from image import center_of_gravity, image_matrix
+from image import center_of_gravity, image_matrix, preprocess
 
 # Main function:
 
