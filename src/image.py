@@ -34,11 +34,13 @@ def image_matrix(image_array, width = IMG_W):
 
     return lines
 
+# Codado por Victor André Gris Costa vvvvvvv
 def get_contours(image):
     img = np.reshape(np.array(image, dtype=np.uint8), (28,28))
     #cv2.imshow('a', cv2.resize(img ,(400,400),interpolation=cv2.INTER_NEAREST))
-    _, thresh = cv2.threshold(img, 127, 255, 0)
+    _, thresh = cv2.threshold(img, 100, 255, 0)
     _, contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours = sorted(contours, key=lambda x:len(x), reverse=True)
     return contours, img
 
 def get_euler_number(contours):
@@ -50,7 +52,9 @@ def get_shape_area(contours):
     #     shape_area -= cv2.contourArea(cont)
     return shape_area
 
+erros = 0
 def get_rectangularity(contours):
+    global erros
     rect = cv2.minAreaRect(contours[0])
     _, dim, _ = rect
     rect_area = dim[0]*dim[1]
@@ -69,3 +73,11 @@ def preprocess(image):
     circularity = get_circularity(contours)
     #print(euler,rectangularity,circularity)
     return (euler, rectangularity, circularity), img, contours
+
+def preprocess_many(images):
+    features = []
+    for image in images:
+        data, img, contours = preprocess(image)
+        features.append(data)
+    return features
+# Codado por Victor André Gris Costa ^^^^^^^

@@ -14,7 +14,7 @@ import numpy as np
 import cv2
 
 # User imports:
-from image import center_of_gravity, image_matrix, preprocess
+from image import center_of_gravity, image_matrix, preprocess_many
 
 # Main function:
 
@@ -28,15 +28,22 @@ mndata.train_lbl_fname = 'train-labels.idx1-ubyte'
 
 train_images, train_labels = mndata.load_training()
 test_images, test_labels = mndata.load_testing()
+#train_labels = train_labels[1]
+#test_labels = test_labels[1]
+for i in range(0,10):
+    print(test_labels[i], train_labels[i])
 
 # Extracting the input features:
+train_features = preprocess_many(train_images)
+test_features = preprocess_many(test_images)
 
 # Running the LDA model analysis:
 print("***********************")
 print("LDA model:")
 print("***********************", "\n")
 
-LDA = LinearDiscriminantAnalysis().fit(train_features, train_labels)
+LDA = LinearDiscriminantAnalysis()
+LDA.fit(train_features, train_labels)
 LDA_predictions = LDA.predict(test_features)
 
 print("Accuracy: ", accuracy_score(test_labels, LDA_predictions))
