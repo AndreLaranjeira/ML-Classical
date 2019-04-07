@@ -20,7 +20,7 @@ from image import center_of_gravity, image_matrix, preprocess_many
 
 # First, we load the MNIST dataset with the 'python-mnist' package.
 # This code is PROVIDED AT THE PACKAGE README FILE! We modified it a little, though.
-mndata = MNIST('./data')
+mndata = MNIST(path='./data', return_type='numpy')
 mndata.test_img_fname = 't10k-images.idx3-ubyte'
 mndata.test_lbl_fname = 't10k-labels.idx1-ubyte'
 mndata.train_img_fname = 'train-images.idx3-ubyte'
@@ -28,10 +28,6 @@ mndata.train_lbl_fname = 'train-labels.idx1-ubyte'
 
 train_images, train_labels = mndata.load_training()
 test_images, test_labels = mndata.load_testing()
-#train_labels = train_labels[1]
-#test_labels = test_labels[1]
-for i in range(0,10):
-    print(test_labels[i], train_labels[i])
 
 # Extracting the input features:
 train_features = preprocess_many(train_images)
@@ -63,5 +59,25 @@ print("Confusion matrix:\n", confusion_matrix(test_labels, KNN3_predictions), '\
 print("Classification report:\n", classification_report(test_labels, KNN3_predictions))
 
 # Running the KNN model analysis with K = 7:
+print("***********************")
+print("KNN with K = 7 model:")
+print("***********************", "\n")
+
+KNN7 = KNeighborsClassifier(n_neighbors = 7).fit(train_features, train_labels)
+KNN7_predictions = KNN7.predict(test_features)
+
+print("Accuracy:", accuracy_score(test_labels, KNN7_predictions))
+print("Confusion matrix:\n", confusion_matrix(test_labels, KNN7_predictions), '\n')
+print("Classification report:\n", classification_report(test_labels, KNN7_predictions))
 
 # Running the KNN model analysis with K = 11:
+print("***********************")
+print("KNN with K = 11 model:")
+print("***********************", "\n")
+
+KNN11 = KNeighborsClassifier(n_neighbors = 11).fit(train_features, train_labels)
+KNN11_predictions = KNN11.predict(test_features)
+
+print("Accuracy:", accuracy_score(test_labels, KNN11_predictions))
+print("Confusion matrix:\n", confusion_matrix(test_labels, KNN11_predictions), '\n')
+print("Classification report:\n", classification_report(test_labels, KNN11_predictions))
