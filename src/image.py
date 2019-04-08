@@ -59,9 +59,7 @@ def get_shape_area(contours):
     #     shape_area -= cv2.contourArea(cont)
     return shape_area
 
-erros = 0
 def get_rectangularity(contours):
-    global erros
     rect = cv2.minAreaRect(contours[0])
     _, dim, _ = rect
     rect_area = dim[0]*dim[1]
