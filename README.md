@@ -2,7 +2,7 @@
 
 ### Descrição
 
-Programa para comparar algoritmos de aprendizado de máquina aplicados na base de dados MNIST com o intuito de gerar um sistema classificador de dígitos manuscritos. Trabalho 01 da disciplina Fundamentos de sistemas inteligentes 2019/1 da Universidade de Brasília.
+Programa para comparar algoritmos clássicos de aprendizado de máquina, como regressão linear e KNN, aplicados na base de dados MNIST com o intuito de gerar um sistema classificador de dígitos manuscritos. Trabalho 01 da disciplina Fundamentos de sistemas inteligentes 2019/1 da Universidade de Brasília.
 
 ### Integrantes:
 
