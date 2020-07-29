@@ -2,14 +2,11 @@
 
 # Package imports:
 from mnist import MNIST
-from sklearn import model_selection
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
-import numpy as np
-import cv2
 
 # User imports:
 from image import preprocess_many
