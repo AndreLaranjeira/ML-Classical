@@ -13,7 +13,7 @@ Victor André Gris Costa | 16/0019311
 
 ## Pacotes necessários
 
-* `numpy`
-* `opencv-python` \(Versão utilizada: 4.1.2.X\)
-* `python-mnist`
-* `scikit-learn`
+* `numpy` \(Versão utilizada: 1.15.4\)
+* `opencv-python` \(Versão utilizada: 4.0.0.21\)
+* `python-mnist` \(Versão utilizada: 0.6\)
+* `scikit-learn` \(Versão utilizada: 0.20.3\)
